@@ -5,32 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bd1e462-44e4-4aca-9a9b-ab0db1278c0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/authConfig.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/useAxios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/pipeline.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/.env" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/Registro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/Registro.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/RestablecerPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/RestablecerPassword.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/SolicitarRecuperacion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/SolicitarRecuperacion.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/perfil/PerfilUsuario.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/perfil/PerfilUsuario.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/Carrito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/Carrito.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/CatalogoProductos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/CatalogoProductos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/DetalleCatalogo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/DetalleCatalogo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/GestionProductos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/GestionProductos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/PagoExito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/PagoExito.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/ProductosArchivados.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/ProductosArchivados.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/resenas/ResenasProducto.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/resenas/ResenasProducto.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/seguimiento_pedidos/SeguimientoPedidos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/seguimiento_pedidos/SeguimientoPedidos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-pedidos/src/main/java/com/gamebakes/servicio_pedidos/controller/PedidoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-pedidos/src/main/resources/PedidoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-productos/src/main/java/com/example/servicioproductos/Controller/ProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-productos/src/main/resources/ProductoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/java/com/gamebakes/serviciousuarios/Controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/resources/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/Config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/Controller/CatalogoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/Model/Catalogo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/Repository/CatalogoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/Service/CatalogoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/ServicioCatalogoApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/test/java/com/gamebakes/servicio_catalogo/ServicioCatalogoApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/java/com/gamebakes/serviciousuarios/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/java/com/gamebakes/serviciousuarios/Config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +55,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/FrancoM27/GameBakes_Cloud.git",
+    "url": "https://github.com/LiuCho123/Gamebakes_Cloud_V2.0.git",
     "accountId": "5200e6fd-aae8-4ad5-8d63-b7c0f22ae2af"
   }
 }]]></component>
@@ -72,7 +66,7 @@
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../../../laragon/bin/php/php-8.1.10-Win32-vs16-x64/php.exe" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../../../../laragon/bin/php/php-8.1.10-Win32-vs16-x64/php.exe" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -117,7 +111,7 @@
     "Spring Boot.ServicioProductosApplication.executor": "Run",
     "Spring Boot.ServicioResenasApplication.executor": "Run",
     "Spring Boot.ServicioUsuariosApplication.executor": "Run",
-    "git-widget-placeholder": "feature/Luis",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/luise/Desktop/FullStack_3",
     "node.js.detected.package.eslint": "true",
@@ -176,9 +170,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PagoServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio-pagos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.serviciopagos.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.serviciopagos.Service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.serviciopagos.Service.PagoServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioCatalogoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-catalogo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_catalogo.ServicioCatalogoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -197,9 +220,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServicioPagosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-pagos" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.serviciopagos.ServicioPagosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServicioPedidosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="servicio-pedidos" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_pedidos.ServicioPedidosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioPedidosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-pedidos" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_pedidos.ServicioPedidosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioPerfilApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-perfil" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_perfil.ServicioPerfilApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -218,9 +262,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServicioProductosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-productos" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.servicioproductos.ServicioProductosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServicioResenasApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="servicio-resenas" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_resenas.ServicioResenasApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioResenasApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-resenas" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_resenas.ServicioResenasApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioUsuariosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-usuarios" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.serviciousuarios.ServicioUsuariosApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -265,6 +330,7 @@
       <workItem from="1782059429879" duration="8624000" />
       <workItem from="1782167548382" duration="4194000" />
       <workItem from="1788713824699" duration="4763000" />
+      <workItem from="1791331959746" duration="1436000" />
     </task>
     <servers />
   </component>
