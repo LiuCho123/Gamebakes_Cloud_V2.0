@@ -4,28 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0bd1e462-44e4-4aca-9a9b-ab0db1278c0e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/pipeline.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/Config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/Controller/CatalogoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/Model/Catalogo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/Repository/CatalogoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/Service/CatalogoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/java/com/gamebakes/servicio_catalogo/ServicioCatalogoApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-catalogo/src/test/java/com/gamebakes/servicio_catalogo/ServicioCatalogoApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/java/com/gamebakes/serviciousuarios/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/java/com/gamebakes/serviciousuarios/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="0bd1e462-44e4-4aca-9a9b-ab0db1278c0e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +90,7 @@
     "Spring Boot.ServicioProductosApplication.executor": "Run",
     "Spring Boot.ServicioResenasApplication.executor": "Run",
     "Spring Boot.ServicioUsuariosApplication.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feature/Luis",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/luise/Desktop/FullStack_3",
     "node.js.detected.package.eslint": "true",
@@ -330,7 +309,7 @@
       <workItem from="1782059429879" duration="8624000" />
       <workItem from="1782167548382" duration="4194000" />
       <workItem from="1788713824699" duration="4763000" />
-      <workItem from="1791331959746" duration="1436000" />
+      <workItem from="1791331959746" duration="1947000" />
     </task>
     <servers />
   </component>
