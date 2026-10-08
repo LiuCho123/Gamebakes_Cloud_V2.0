@@ -5,32 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bd1e462-44e4-4aca-9a9b-ab0db1278c0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/authConfig.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/useAxios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gamebakes-web/.env" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/Registro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/Registro.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/RestablecerPassword.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/RestablecerPassword.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/SolicitarRecuperacion.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/SolicitarRecuperacion.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/perfil/PerfilUsuario.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/perfil/PerfilUsuario.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/Carrito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/Carrito.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/CatalogoProductos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/CatalogoProductos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/DetalleCatalogo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/DetalleCatalogo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/GestionProductos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/GestionProductos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/PagoExito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/PagoExito.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/ProductosArchivados.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/productos/ProductosArchivados.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/resenas/ResenasProducto.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/resenas/ResenasProducto.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/seguimiento_pedidos/SeguimientoPedidos.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/seguimiento_pedidos/SeguimientoPedidos.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-pedidos/src/main/java/com/gamebakes/servicio_pedidos/controller/PedidoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-pedidos/src/main/resources/PedidoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-productos/src/main/java/com/example/servicioproductos/Controller/ProductoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-productos/src/main/resources/ProductoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/java/com/gamebakes/serviciousuarios/Controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-usuarios/src/main/resources/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamebakes-web/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,12 +36,12 @@
     &quot;assignee&quot;: &quot;LiuCho123&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/FrancoM27/GameBakes_Cloud.git",
-    "accountId": "5200e6fd-aae8-4ad5-8d63-b7c0f22ae2af"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/LiuCho123/Gamebakes_Cloud_V2.0.git&quot;,
+    &quot;accountId&quot;: &quot;5200e6fd-aae8-4ad5-8d63-b7c0f22ae2af&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -72,7 +49,7 @@
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../../../laragon/bin/php/php-8.1.10-Win32-vs16-x64/php.exe" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../../../../laragon/bin/php/php-8.1.10-Win32-vs16-x64/php.exe" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -84,54 +61,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.PagoServiceTest.executor": "Run",
-    "Maven.api-gateway [clean].executor": "Run",
-    "Maven.api-gateway [package].executor": "Run",
-    "Maven.servicio-pagos [clean].executor": "Run",
-    "Maven.servicio-pagos [package].executor": "Run",
-    "Maven.servicio-pedidos [clean].executor": "Run",
-    "Maven.servicio-pedidos [package].executor": "Run",
-    "Maven.servicio-perfil [clean].executor": "Run",
-    "Maven.servicio-perfil [package].executor": "Run",
-    "Maven.servicio-productos [clean].executor": "Run",
-    "Maven.servicio-productos [package].executor": "Run",
-    "Maven.servicio-resenas [clean].executor": "Run",
-    "Maven.servicio-resenas [package].executor": "Run",
-    "Maven.servicio-usuarios [clean].executor": "Run",
-    "Maven.servicio-usuarios [package].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.ApiGatewayApplication.executor": "Run",
-    "Spring Boot.ServicioCatalogoApplication.executor": "Run",
-    "Spring Boot.ServicioPagosApplication.executor": "Run",
-    "Spring Boot.ServicioPedidosApplication.executor": "Run",
-    "Spring Boot.ServicioPerfilApplication.executor": "Run",
-    "Spring Boot.ServicioProductosApplication.executor": "Run",
-    "Spring Boot.ServicioResenasApplication.executor": "Run",
-    "Spring Boot.ServicioUsuariosApplication.executor": "Run",
-    "git-widget-placeholder": "feature/Luis",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/luise/Desktop/FullStack_3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.configurations.included.in.services": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.PagoServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-gateway [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-gateway [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-pagos [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-pagos [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-pedidos [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-pedidos [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-perfil [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-perfil [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-productos [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-productos [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-resenas [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-resenas [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-usuarios [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.servicio-usuarios [package].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServicioCatalogoApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServicioPagosApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServicioPedidosApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServicioPerfilApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServicioProductosApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServicioResenasApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ServicioUsuariosApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/Luis&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/luise/Desktop/FullStack_3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -176,9 +153,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PagoServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="servicio-pagos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.serviciopagos.Service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.serviciopagos.Service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.serviciopagos.Service.PagoServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioCatalogoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-catalogo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_catalogo.ServicioCatalogoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -197,9 +203,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServicioPagosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-pagos" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.serviciopagos.ServicioPagosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServicioPedidosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="servicio-pedidos" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_pedidos.ServicioPedidosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioPedidosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-pedidos" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_pedidos.ServicioPedidosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioPerfilApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-perfil" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_perfil.ServicioPerfilApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -218,9 +245,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServicioProductosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-productos" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.servicioproductos.ServicioProductosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServicioResenasApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="servicio-resenas" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_resenas.ServicioResenasApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioResenasApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-resenas" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.servicio_resenas.ServicioResenasApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioUsuariosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="servicio-usuarios" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.gamebakes.serviciousuarios.ServicioUsuariosApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -265,6 +313,8 @@
       <workItem from="1782059429879" duration="8624000" />
       <workItem from="1782167548382" duration="4194000" />
       <workItem from="1788713824699" duration="4763000" />
+      <workItem from="1791331959746" duration="2270000" />
+      <workItem from="1791417229917" duration="3399000" />
     </task>
     <servers />
   </component>

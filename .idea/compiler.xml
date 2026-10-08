@@ -6,24 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="api-gateway" />
-        <module name="servicio-resenas" />
-      </profile>
-      <profile name="Annotation profile for backend-parent" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
-        </processorPath>
-        <module name="servicio-catalogo" />
-        <module name="servicio-productos" />
         <module name="servicio-pagos" />
         <module name="servicio-pedidos" />
         <module name="servicio-perfil" />
+        <module name="servicio-resenas" />
+        <module name="api-gateway" />
+        <module name="servicio-productos" />
         <module name="servicio-usuarios" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="servicio-catalogo" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

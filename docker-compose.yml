@@ -1,65 +1,31 @@
 version: '3.8'
 
 services:
-  mysql-server:
-    image: mysql:8.0
-    container_name: mysql_global
-    environment:
-      MYSQL_ROOT_PASSWORD: root
+  rabbitmq_global:
+    image: rabbitmq:3-management
+    container_name: rabbitmq_global
     ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - "5672:5672"
+      - "15672:15672"
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      test: rabbitmq-diagnostics -q ping
       interval: 5s
       timeout: 3s
       retries: 10
-
-  zookeeper:
-    image: confluentinc/cp-zookeeper:7.4.0
-    container_name: zookeeper_local
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-
-  kafka:
-    image: confluentinc/cp-kafka:7.4.0
-    container_name: kafka_local
-    depends_on:
-      - zookeeper
-    ports:
-      - "9092:9092"
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   api-gateway:
     build: ./servicios-backend/api-gateway
     container_name: api_gateway
     ports:
       - "9000:9000"
-    depends_on:
-      mysql-server:
-        condition: service_healthy
-      kafka:
-        condition: service_started
 
   servicio-usuarios:
     build: ./servicios-backend/servicio-usuarios
     container_name: app_usuarios
     ports:
       - "8080:8080"
-    depends_on:
-      mysql-server:
-        condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-server:3306/gb_usuarios
+      - SPRING_DATASOURCE_URL=jdbc:mysql://172.31.28.229:3306/gb_usuarios
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
 
@@ -68,11 +34,8 @@ services:
     container_name: app_resenas
     ports:
       - "8081:8081"
-    depends_on:
-      mysql-server:
-        condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-server:3306/gb_resenas
+      - SPRING_DATASOURCE_URL=jdbc:mysql://172.31.28.229:3306/gb_resenas
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
 
@@ -82,27 +45,21 @@ services:
     ports:
       - "8082:8082"
     depends_on:
-      mysql-server:
+      rabbitmq_global:
         condition: service_healthy
-      kafka:
-        condition: service_started
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-server:3306/gb_pedidos
+      - SPRING_DATASOURCE_URL=jdbc:mysql://172.31.28.229:3306/gb_pedidos
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
-      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-      - "SPRING_AUTOCONFIGURE_EXCLUDE=com.azure.spring.cloud.autoconfigure.kafka.AzureEventHubsKafkaAutoConfiguration,com.azure.spring.cloud.autoconfigure.implementation.kafka.AzureEventHubsKafkaOAuth2AutoConfiguration"
+      - SPRING_RABBITMQ_HOST=rabbitmq_global
 
   servicio-perfil:
     build: ./servicios-backend/servicio-perfil
     container_name: app_perfil
     ports:
       - "8084:8084"
-    depends_on:
-      mysql-server:
-        condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-server:3306/gb_perfil
+      - SPRING_DATASOURCE_URL=jdbc:mysql://172.31.28.229:3306/gb_perfil
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
 
@@ -112,16 +69,13 @@ services:
     ports:
       - "8085:8085"
     depends_on:
-      mysql-server:
+      rabbitmq_global:
         condition: service_healthy
-      kafka:
-        condition: service_started
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-server:3306/gb_productos
+      - SPRING_DATASOURCE_URL=jdbc:mysql://172.31.28.229:3306/gb_productos
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
-      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-      - "SPRING_AUTOCONFIGURE_EXCLUDE=com.azure.spring.cloud.autoconfigure.kafka.AzureEventHubsKafkaAutoConfiguration,com.azure.spring.cloud.autoconfigure.implementation.kafka.AzureEventHubsKafkaOAuth2AutoConfiguration"
+      - SPRING_RABBITMQ_HOST=rabbitmq_global
 
   servicio-pagos:
     build: ./servicios-backend/servicio-pagos
@@ -129,16 +83,13 @@ services:
     ports:
       - "8086:8086"
     depends_on:
-      mysql-server:
+      rabbitmq_global:
         condition: service_healthy
-      kafka:
-        condition: service_started
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-server:3306/gb_pagos
+      - SPRING_DATASOURCE_URL=jdbc:mysql://172.31.28.229:3306/gb_pagos
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
-      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-      - "SPRING_AUTOCONFIGURE_EXCLUDE=com.azure.spring.cloud.autoconfigure.kafka.AzureEventHubsKafkaAutoConfiguration,com.azure.spring.cloud.autoconfigure.implementation.kafka.AzureEventHubsKafkaOAuth2AutoConfiguration"
+      - SPRING_RABBITMQ_HOST=rabbitmq_global
 
   frontend-react:
     build: ./gamebakes-web
@@ -147,6 +98,3 @@ services:
       - "5173:80"
     depends_on:
       - api-gateway
-
-volumes:
-  db_data:
