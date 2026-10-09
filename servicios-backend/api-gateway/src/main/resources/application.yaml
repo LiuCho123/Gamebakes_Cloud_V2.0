@@ -42,11 +42,7 @@ spring:
           uri: "http://servicio-pedidos:8082"
           predicates:
             - Path=/api/pedidos/**
-        - id: servicio-perfil-crear
-          uri: "http://servicio-perfil:8084"
-          predicates:
-            - Path=/api/perfil
-            - Method=POST
+
         - id: servicio-perfil
           uri: "http://servicio-perfil:8084"
           predicates:
