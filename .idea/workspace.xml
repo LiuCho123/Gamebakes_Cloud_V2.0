@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="0bd1e462-44e4-4aca-9a9b-ab0db1278c0e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/Login.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/Registro.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/RestablecerPassword.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/SolicitarRecuperacion.jsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

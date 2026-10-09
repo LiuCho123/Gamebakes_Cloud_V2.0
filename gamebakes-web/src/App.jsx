@@ -59,8 +59,6 @@ function App() {
     }, []);
 
     const handleLoginCognito = () => {
-        // Redirige al Hosted UI de Cognito.
-        // Reemplaza "TU_DOMINIO_COGNITO" por el dominio que configuraste en AWS (ej: gamebakes.auth.us-east-1.amazoncognito.com)
         const cognitoDomain = "https://us-east-19yc743mat.auth.us-east-1.amazoncognito.com";
         const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
         const redirectUri = window.location.origin;

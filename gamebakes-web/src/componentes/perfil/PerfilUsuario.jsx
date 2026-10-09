@@ -6,7 +6,7 @@ export default function PerfilUsuario({ usuarioId, rol }) {
     const [perfil, setPerfil] = useState(null);
     const [modoEdicion, setModoEdicion] = useState(false);
     const [form, setForm] = useState({
-        username: '', email: '', rol: '', nombreCompleto: '', telefono: '', direccion: ''
+        nombreCompleto: '', telefono: '', direccion: ''
     });
     const [cargando, setCargando] = useState(true);
     const [guardando, setGuardando] = useState(false);
@@ -15,32 +15,20 @@ export default function PerfilUsuario({ usuarioId, rol }) {
     const colorTema = rol === 'vendedor' ? '#9b59b6' : '#00d4ff';
 
     useEffect(() => {
-        cargarPerfil();
+        if (usuarioId) cargarPerfil();
     }, [usuarioId]);
-
-    const getAuthDataSeguro = (token) => {
-        if (!token) return {};
-        try { return JSON.parse(atob(token.split('.')[1])); }
-        catch (e) { return {}; }
-    };
 
     const cargarPerfil = async () => {
         setCargando(true);
         setMensaje({ tipo: '', texto: '' });
 
         try {
-            const token = sessionStorage.getItem('token');
-            const authData = getAuthDataSeguro(token);
-            const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-
-            const response = await api.get(`/api/perfil/usuario/${usuarioId}`, config);
+            // useAxios inyecta el token automáticamente
+            const response = await api.get(`/api/perfil/usuario/${usuarioId}`);
             const data = response.data;
 
             setPerfil(data);
             setForm({
-                username: authData.username || data.username || '',
-                email: authData.email || data.email || '',
-                rol: authData.rol || data.rol || '',
                 nombreCompleto: data.nombreCompleto || '',
                 telefono: data.telefono || '',
                 direccion: data.direccion || ''
@@ -59,25 +47,18 @@ export default function PerfilUsuario({ usuarioId, rol }) {
 
     const crearPerfilAutomatico = async () => {
         try {
-            const token = sessionStorage.getItem('token');
-            const authData = getAuthDataSeguro(token);
-            const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-
             const nuevoPerfil = {
                 usuarioId: usuarioId,
-                nombreCompleto: authData.nombre || '',
+                nombreCompleto: 'Usuario Nuevo',
                 telefono: '',
                 direccion: ''
             };
 
-            const response = await api.post(`/api/perfil`, nuevoPerfil, config);
+            const response = await api.post(`/api/perfil`, nuevoPerfil);
             const data = response.data;
 
             setPerfil(data);
             setForm({
-                username: authData.username || '',
-                email: authData.email || '',
-                rol: authData.rol || '',
                 nombreCompleto: data.nombreCompleto || '',
                 telefono: data.telefono || '',
                 direccion: data.direccion || ''
@@ -111,28 +92,16 @@ export default function PerfilUsuario({ usuarioId, rol }) {
         }
 
         try {
-            const token = sessionStorage.getItem('token');
-            const authData = getAuthDataSeguro(token);
-            const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-
             const perfilActualizado = {
                 nombreCompleto: form.nombreCompleto,
                 telefono: form.telefono,
                 direccion: form.direccion
             };
 
-            const response = await api.put(`/api/perfil/usuario/${usuarioId}`, perfilActualizado, config);
+            const response = await api.put(`/api/perfil/usuario/${usuarioId}`, perfilActualizado);
             const data = response.data;
 
             setPerfil(data);
-            setForm({
-                username: authData.username || '',
-                email: authData.email || '',
-                rol: authData.rol || '',
-                nombreCompleto: data.nombreCompleto || '',
-                telefono: data.telefono || '',
-                direccion: data.direccion || ''
-            });
             setModoEdicion(false);
             setMensaje({ tipo: 'exito', texto: 'Perfil actualizado correctamente' });
         } catch (error) {
@@ -147,9 +116,6 @@ export default function PerfilUsuario({ usuarioId, rol }) {
         setModoEdicion(false);
         if (perfil) {
             setForm({
-                username: perfil.username || '',
-                email: perfil.email || '',
-                rol: perfil.rol || '',
                 nombreCompleto: perfil.nombreCompleto || '',
                 telefono: perfil.telefono || '',
                 direccion: perfil.direccion || ''
@@ -195,9 +161,7 @@ export default function PerfilUsuario({ usuarioId, rol }) {
 
                 <form onSubmit={handleGuardar}>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
-                        <div style={inputGroup}><label style={labelStyle}>USERNAME</label><input type="text" style={inputReadOnlyStyle} value={form.username} readOnly /></div>
-                        <div style={inputGroup}><label style={labelStyle}>EMAIL</label><input type="email" style={inputReadOnlyStyle} value={form.email} readOnly /></div>
-                        <div style={inputGroup}><label style={labelStyle}>ROL</label><input type="text" style={inputReadOnlyStyle} value={form.rol} readOnly /></div>
+                        <div style={inputGroup}><label style={labelStyle}>ROL</label><input type="text" style={inputReadOnlyStyle} value={rol.toUpperCase()} readOnly /></div>
                         <div style={inputGroup}><label style={labelStyle}>NOMBRE COMPLETO *</label><input type="text" style={modoEdicion ? inputStyle : inputReadOnlyStyle} value={form.nombreCompleto} onChange={(e) => setForm({ ...form, nombreCompleto: e.target.value })} readOnly={!modoEdicion} placeholder="Tu nombre completo" /></div>
                         <div style={inputGroup}><label style={labelStyle}>TELÉFONO (OPCIONAL)</label><input type="text" style={modoEdicion ? inputStyle : inputReadOnlyStyle} value={form.telefono} onChange={(e) => setForm({ ...form, telefono: e.target.value })} readOnly={!modoEdicion} placeholder="Solo dígitos" /></div>
                         <div style={inputGroup}><label style={labelStyle}>DIRECCIÓN (OPCIONAL)</label><input type="text" style={modoEdicion ? inputStyle : inputReadOnlyStyle} value={form.direccion} onChange={(e) => setForm({ ...form, direccion: e.target.value })} readOnly={!modoEdicion} placeholder="Tu dirección física" /></div>
@@ -218,7 +182,7 @@ export default function PerfilUsuario({ usuarioId, rol }) {
 
             <div style={{ background: 'rgba(0,0,0,0.5)', padding: '20px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
                 <p style={{ color: '#888', fontSize: '0.9rem', margin: 0 }}>
-                    💡 Los campos marcados con * son obligatorios. Los campos de username, email y rol no pueden ser modificados.
+                    💡 Los campos marcados con * son obligatorios. El rol no puede ser modificado.
                 </p>
             </div>
         </div>
