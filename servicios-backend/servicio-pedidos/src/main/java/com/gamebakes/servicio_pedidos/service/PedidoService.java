@@ -3,7 +3,8 @@ package com.gamebakes.servicio_pedidos.service;
 import com.gamebakes.servicio_pedidos.model.Pedido;
 import com.gamebakes.servicio_pedidos.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import com.gamebakes.servicio_pedidos.Config.RabbitMQConfig;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -14,9 +15,7 @@ public class PedidoService {
     private PedidoRepository pedidoRepository;
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-
-    private final String TOPIC = "seguimiento-pedidos";
+    private RabbitTemplate rabbitTemplate;
 
     //VISTA CLIENTE: Obtener sus pedidos personales
     public List<Pedido> obtenerPedidosPorCliente(Long clienteId) {
@@ -31,10 +30,10 @@ public class PedidoService {
     public Pedido crearPedido(Pedido pedido) {
         pedido.setEstado("PENDIENTE");
         Pedido nuevoPedido = pedidoRepository.save(pedido);
-        
-        //Kafka: Notificar creación
-        kafkaTemplate.send(TOPIC, "NUEVO_PEDIDO: El cliente " + pedido.getClienteNombre() + " compró " + pedido.getProductoNombre());
-        
+
+        //RabbitMQ: Notificar creación
+        notificarSeguimiento("NUEVO_PEDIDO: El cliente " + pedido.getClienteNombre() + " compró " + pedido.getProductoNombre());
+
         return nuevoPedido;
     }
 
@@ -45,8 +44,8 @@ public class PedidoService {
         pedido.setEstado(nuevoEstado);
         Pedido actualizado = pedidoRepository.save(pedido);
 
-        //Kafka: Notificar cambio de estado para seguimiento en tiempo real
-        kafkaTemplate.send(TOPIC, "ESTADO_ACTUALIZADO: Pedido #" + id + " ahora está en " + nuevoEstado);
+        //RabbitMQ: Notificar cambio de estado para seguimiento en tiempo real
+        notificarSeguimiento("ESTADO_ACTUALIZADO: Pedido #" + id + " ahora está en " + nuevoEstado);
 
         return actualizado;
     }
@@ -71,5 +70,14 @@ public class PedidoService {
                 .anyMatch(pedido -> "ENTREGADO".equals(pedido.getEstado()));
         System.out.println("Resultado: " + entregado);
         return entregado;
+    }
+
+    // Publica en RabbitMQ sin romper el flujo principal si el broker no responde
+    private void notificarSeguimiento(String mensaje) {
+        try {
+            rabbitTemplate.convertAndSend(RabbitMQConfig.EXCHANGE, RabbitMQConfig.RK_PEDIDO_SEGUIMIENTO, mensaje);
+        } catch (Exception e) {
+            System.err.println("No se pudo publicar seguimiento en RabbitMQ: " + e.getMessage());
+        }
     }
 }

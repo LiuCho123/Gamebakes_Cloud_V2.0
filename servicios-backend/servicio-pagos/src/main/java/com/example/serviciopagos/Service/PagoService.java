@@ -11,7 +11,6 @@ import com.mercadopago.client.preference.*;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.resources.preference.Preference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,10 +31,9 @@ public class PagoService {
     private ProductoStockCacheRepository stockCacheRepository;
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private PagoEventPublisher pagoEventPublisher;
 
     private String accessToken = "APP_USR-6384651523153058-051023-18ce169c7c92f41fc1af6ae5d5ad9a39-3392426062";
-    private final String TOPIC = "pago-exitoso-topic";
 
     public Pago iniciarPagoMP(SolicitudPagoDTO solicitud) {
 
@@ -182,7 +180,7 @@ public class PagoService {
         try {
             com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
             String jsonPago = mapper.writeValueAsString(pagoInfo);
-            kafkaTemplate.send(TOPIC, jsonPago);
+            pagoEventPublisher.publicarPagoExitoso(jsonPago);
         } catch (Exception e) {
             throw new RuntimeException("Error al convertir pagoInfo a JSON", e);
         }
