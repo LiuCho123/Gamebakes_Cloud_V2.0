@@ -12,9 +12,10 @@ spring:
         cors-configurations:
           '[/**]':
             allowed-origins:
-              - "http://localhost:5173"
-              - "http://18.211.231.0:5173"
-              - "http://18.211.231.0"
+            - "http://localhost:5173"
+            - "http://44.218.147.127:5173"
+            - "http://44.218.147.127"
+            - "https://gamebakescloud.vercel.app"
             allowed-methods:
               - GET
               - POST
@@ -41,15 +42,11 @@ spring:
           uri: "http://servicio-pedidos:8082"
           predicates:
             - Path=/api/pedidos/**
-        - id: servicio-perfil-crear
-          uri: "http://servicio-perfil:8084"
-          predicates:
-            - Path=/api/perfil
-            - Method=POST
+
         - id: servicio-perfil
           uri: "http://servicio-perfil:8084"
           predicates:
-            - Path=/api/perfil/**
+            - Path=/api/perfil, /api/perfil/**
         - id: servicio-productos-privado
           uri: "http://servicio-productos:8085"
           predicates:

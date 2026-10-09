@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useMsal } from "@azure/msal-react"
 import { loginRequest } from './componentes/autenticacion/authConfig'
 
@@ -36,9 +36,29 @@ function App() {
         return { loggedIn: false, rol: 'cliente', id: null, nombre: '' };
     });
 
+    useEffect(() => {
+        const hash = window.location.hash;
+        if (hash && hash.includes('id_token')) {
+            const params = new URLSearchParams(hash.substring(1));
+            const idToken = params.get('id_token');
+
+            if (idToken) {
+                sessionStorage.setItem('token', idToken);
+
+                let nombreGamer = 'Gamer';
+                try {
+                    const payload = JSON.parse(atob(idToken.split('.')[1]));
+                    nombreGamer = payload.name || payload['cognito:username'] || 'Gamer';
+                } catch (e) {}
+
+                setUsuario({ loggedIn: true, rol: 'cliente', id: null, nombre: nombreGamer });
+
+                window.history.replaceState(null, '', window.location.pathname);
+            }
+        }
+    }, []);
+
     const handleLoginCognito = () => {
-        // Redirige al Hosted UI de Cognito.
-        // Reemplaza "TU_DOMINIO_COGNITO" por el dominio que configuraste en AWS (ej: gamebakes.auth.us-east-1.amazoncognito.com)
         const cognitoDomain = "https://us-east-19yc743mat.auth.us-east-1.amazoncognito.com";
         const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
         const redirectUri = window.location.origin;
