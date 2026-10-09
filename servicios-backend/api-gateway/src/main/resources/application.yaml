@@ -12,9 +12,10 @@ spring:
         cors-configurations:
           '[/**]':
             allowed-origins:
-              - "http://localhost:5173"
-              - "http://18.211.231.0:5173"
-              - "http://18.211.231.0"
+            - "http://localhost:5173"
+            - "http://44.218.147.127:5173"
+            - "http://44.218.147.127"
+            - "https://gamebakescloud.vercel.app"
             allowed-methods:
               - GET
               - POST
