@@ -46,7 +46,7 @@ spring:
         - id: servicio-perfil
           uri: "http://servicio-perfil:8084"
           predicates:
-            - Path=/api/perfil/**
+            - Path=/api/perfil, /api/perfil/**
         - id: servicio-productos-privado
           uri: "http://servicio-productos:8085"
           predicates:
