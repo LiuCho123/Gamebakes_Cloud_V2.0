@@ -2,7 +2,7 @@ export const msalConfig = {
     auth: {
         clientId: import.meta.env.VITE_AZURE_CLIENT_ID,
         authority: import.meta.env.VITE_AZURE_AUTHORITY,
-        redirectUri: "https://gamebakescloud.vercel.app",
+        redirectUri: window.location.origin,
     },
     cache: {
         cacheLocation: "sessionStorage",

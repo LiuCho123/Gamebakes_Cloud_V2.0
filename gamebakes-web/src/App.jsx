@@ -5,10 +5,6 @@ import { loginRequest } from './componentes/autenticacion/authConfig'
 import SeguimientoPedidos from './componentes/seguimiento_pedidos/SeguimientoPedidos'
 import ResenasProducto from './componentes/resenas/ResenasProducto'
 import logo from './assets/logo_gamebakes.png'
-import Login from './componentes/autenticacion/Login'
-import Registro from './componentes/autenticacion/Registro'
-import SolicitarRecuperacion from './componentes/autenticacion/SolicitarRecuperacion'
-import RestablecerPassword from './componentes/autenticacion/RestablecerPassword'
 import GestionProductos from './componentes/productos/GestionProductos'
 import CatalogoProductos from './componentes/productos/CatalogoProductos'
 import DetalleCatalogo from './componentes/productos/DetalleCatalogo'
@@ -18,7 +14,6 @@ import PerfilUsuario from './componentes/perfil/PerfilUsuario'
 import { getAuthData } from './componentes/autenticacion/authUtils'
 
 function App() {
-    // --- 1. INTEGRACIÓN MSAL (AZURE AD - VENDEDORES/ADMINS) ---
     const { instance, accounts } = useMsal();
     const isMsalAuthenticated = accounts.length > 0;
     const msalAccount = accounts[0];
@@ -33,7 +28,6 @@ function App() {
         setSeccionActiva('inicio');
     };
 
-    // --- 2. LÓGICA MANUAL ORIGINAL (CLIENTES) ---
     const [usuario, setUsuario] = useState(() => {
         const auth = getAuthData();
         if (auth) {
@@ -42,21 +36,24 @@ function App() {
         return { loggedIn: false, rol: 'cliente', id: null, nombre: '' };
     });
 
-    const [vistaRecuperacion, setVistaRecuperacion] = useState(false);
+    const handleLoginCognito = () => {
+        // Redirige al Hosted UI de Cognito.
+        // Reemplaza "TU_DOMINIO_COGNITO" por el dominio que configuraste en AWS (ej: gamebakes.auth.us-east-1.amazoncognito.com)
+        const cognitoDomain = "https://us-east-19yc743mat.auth.us-east-1.amazoncognito.com";
+        const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
+        const redirectUri = window.location.origin;
+        window.location.href = `${cognitoDomain}/login?client_id=${clientId}&response_type=token&scope=email+openid+profile&redirect_uri=${redirectUri}`;
+    };
+
+    const cerrarSesionManual = () => {
+        sessionStorage.clear();
+        setUsuario({ loggedIn: false, rol: 'cliente', id: null, nombre: '' });
+        setSeccionActiva('inicio');
+    };
+
+    // --- 3. ESTADOS COMPARTIDOS ---
     const [productoSeleccionado, setProductoSeleccionado] = useState(null);
-
-    const [tokenRecuperacion, setTokenRecuperacion] = useState(() => {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('token');
-    });
-
-    const [mostrarRegistro, setMostrarRegistro] = useState(() => {
-        return sessionStorage.getItem('view') === 'registro';
-    });
-
-    const [seccionActiva, setSeccionActiva] = useState(() => {
-        return sessionStorage.getItem('seccion') || 'inicio';
-    });
+    const [seccionActiva, setSeccionActiva] = useState(() => sessionStorage.getItem('seccion') || 'inicio');
 
     const manejarCambioSeccion = (id) => {
         setSeccionActiva(id || 'inicio');
@@ -64,74 +61,42 @@ function App() {
         setProductoSeleccionado(null);
     };
 
-    const manejarCambioVista = (esRegistro) => {
-        setMostrarRegistro(esRegistro);
-        sessionStorage.setItem('view', esRegistro ? 'registro' : 'login');
-        setVistaRecuperacion(false);
-    };
-
-    const cerrarSesionManual = () => {
-        sessionStorage.clear();
-        setUsuario({ loggedIn: false, rol: 'cliente', id: null, nombre: '' });
-        setSeccionActiva('inicio');
-        setMostrarRegistro(false);
-        setVistaRecuperacion(false);
-    };
-
-    // --- 3. RENDERIZADO NO AUTENTICADO ---
+    // --- 4. RENDERIZADO NO AUTENTICADO (PANTALLA DE LOGIN LIMPIA) ---
     if (!isMsalAuthenticated && !usuario.loggedIn) {
-        if (tokenRecuperacion) {
-            return (
-                <RestablecerPassword
-                    token={tokenRecuperacion}
-                    alFinalizar={() => {
-                        setTokenRecuperacion(null);
-                        window.history.replaceState({}, document.title, "/");
-                        setVistaRecuperacion(false);
-                    }}
-                />
-            );
-        }
-
-        if (vistaRecuperacion) {
-            return <SolicitarRecuperacion alVolverAlLogin={() => setVistaRecuperacion(false)} />;
-        }
-
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#0a0a0a', minHeight: '100vh', paddingTop: '40px' }}>
-                <img src={logo} alt="GameBakes" style={{ width: '250px', marginBottom: '30px' }} />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0a0a0a', minHeight: '100vh', padding: '20px' }}>
+                <img src={logo} alt="GameBakes" style={{ width: '300px', marginBottom: '50px', filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.1))' }} />
 
-                {/* SECCIÓN AZURE AD PARA VENDEDORES */}
-                <div style={{ background: '#111', padding: '25px', borderRadius: '15px', border: '1px solid #9b59b6', marginBottom: '30px', textAlign: 'center', width: '350px', boxShadow: '0 4px 15px rgba(155, 89, 182, 0.2)' }}>
-                    <h3 style={{ color: '#9b59b6', margin: '0 0 15px 0', textTransform: 'uppercase' }}>Acceso Corporativo</h3>
-                    <p style={{ color: '#888', fontSize: '0.8rem', marginBottom: '15px' }}>Exclusivo para Vendedores y Administradores</p>
-                    <button onClick={handleLoginMSAL} style={{ background: '#0078D4', color: 'white', padding: '12px 20px', borderRadius: '5px', border: 'none', cursor: 'pointer', fontWeight: 'bold', width: '100%' }}>
-                        🔑 Iniciar Sesión con Microsoft
-                    </button>
+                <div style={{ display: 'flex', gap: '30px', flexWrap: 'wrap', justifyContent: 'center' }}>
+
+                    {/* Tarjeta Cliente (Cognito) */}
+                    <div style={{ ...tarjetaLoginStyle, border: '1px solid #00d4ff', boxShadow: '0 10px 25px rgba(0, 212, 255, 0.1)' }}>
+                        <h2 style={{ color: '#00d4ff', margin: '0 0 10px 0', textTransform: 'uppercase' }}>Acceso Gamers</h2>
+                        <p style={{ color: '#888', fontSize: '0.9rem', marginBottom: '25px', minHeight: '40px' }}>
+                            Inicia sesión para explorar el catálogo, revisar tu inventario y realizar pedidos.
+                        </p>
+                        <button onClick={handleLoginCognito} style={{ ...btnStyle, backgroundColor: '#00d4ff' }}>
+                            🎮 Ingresar como Cliente
+                        </button>
+                    </div>
+
+                    {/* Tarjeta Vendedor (Azure) */}
+                    <div style={{ ...tarjetaLoginStyle, border: '1px solid #9b59b6', boxShadow: '0 10px 25px rgba(155, 89, 182, 0.1)' }}>
+                        <h2 style={{ color: '#9b59b6', margin: '0 0 10px 0', textTransform: 'uppercase' }}>Acceso Corporativo</h2>
+                        <p style={{ color: '#888', fontSize: '0.9rem', marginBottom: '25px', minHeight: '40px' }}>
+                            Panel de control exclusivo para administración y gestión de vendedores.
+                        </p>
+                        <button onClick={handleLoginMSAL} style={{ ...btnStyle, backgroundColor: '#9b59b6', color: 'white' }}>
+                            💼 Ingresar con Microsoft
+                        </button>
+                    </div>
+
                 </div>
-
-                <div style={{ width: '350px', borderBottom: '1px solid #333', marginBottom: '30px' }}></div>
-
-                {/* SECCIÓN MANUAL PARA CLIENTES */}
-                <h3 style={{ color: '#00d4ff', marginBottom: '10px', textTransform: 'uppercase' }}>Acceso Clientes</h3>
-                { mostrarRegistro
-                    ? <Registro alVolverAlLogin={() => manejarCambioVista(false)} />
-                    : <Login
-                        onLoginSuccess={() => {
-                            const auth = getAuthData();
-                            setUsuario({ loggedIn: true, rol: auth?.rol || 'cliente', id: auth?.id || null, nombre: auth?.nombre || '' });
-                            sessionStorage.removeItem('view');
-                        }}
-                        alCambiarARegistro={() => manejarCambioVista(true)}
-                        alOlvidarPassword={() => setVistaRecuperacion(true)}
-                    />
-                }
             </div>
         );
     }
 
-    // --- 4. RENDERIZADO AUTENTICADO ---
-    // Determinamos unificadamente quién está operando la app
+    // --- 5. RENDERIZADO AUTENTICADO ---
     const rolActual = isMsalAuthenticated ? 'vendedor' : usuario.rol;
     const nombreActual = isMsalAuthenticated ? msalAccount.name : usuario.nombre;
     const idActual = isMsalAuthenticated ? msalAccount.localAccountId : usuario.id;
@@ -186,7 +151,7 @@ function App() {
                         onClick={isMsalAuthenticated ? handleLogoutMSAL : cerrarSesionManual}
                         style={{ width: '100%', backgroundColor: 'transparent', color: '#ff4444', border: '1px solid #ff4444', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '0.8rem' }}
                     >
-                        ❌ Cerrar Gestión
+                        ❌ Cerrar Sesión
                     </button>
                 </div>
             </nav>
@@ -229,51 +194,14 @@ function App() {
                                     : 'Prepárate para subir de nivel con los mejores pasteles y dulces temáticos. ¿Qué aventura gastronómica elegiremos hoy?'}
                             </p>
                         </div>
-
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '25px' }}>
-                            {rolActual === 'cliente' ? (
-                                <>
-                                    <div onClick={() => manejarCambioSeccion('catalogo')} style={estiloTarjeta}>
-                                        <h2 style={{ fontSize: '3rem', margin: '0 0 15px 0' }}>🍰</h2>
-                                        <h3 style={{ margin: '0 0 10px 0', color: 'white' }}>Explorar Catálogo</h3>
-                                        <p style={{ color: '#888', fontSize: '0.9rem', margin: 0 }}>Descubre nuevas pociones y pasteles.</p>
-                                    </div>
-                                    <div onClick={() => manejarCambioSeccion('pedidos')} style={estiloTarjeta}>
-                                        <h2 style={{ fontSize: '3rem', margin: '0 0 15px 0' }}>📦</h2>
-                                        <h3 style={{ margin: '0 0 10px 0', color: 'white' }}>Mis Misiones</h3>
-                                        <p style={{ color: '#888', fontSize: '0.9rem', margin: 0 }}>Rastrea tus pedidos activos y entregados.</p>
-                                    </div>
-                                    <div onClick={() => manejarCambioSeccion('carrito')} style={estiloTarjeta}>
-                                        <h2 style={{ fontSize: '3rem', margin: '0 0 15px 0' }}>🛒</h2>
-                                        <h3 style={{ margin: '0 0 10px 0', color: 'white' }}>Inventario</h3>
-                                        <p style={{ color: '#888', fontSize: '0.9rem', margin: 0 }}>Revisa y paga los items de tu carrito.</p>
-                                    </div>
-                                </>
-                            ) : (
-                                <>
-                                    <div onClick={() => manejarCambioSeccion('pedidos_gestion')} style={estiloTarjeta}>
-                                        <h2 style={{ fontSize: '3rem', margin: '0 0 15px 0' }}>📋</h2>
-                                        <h3 style={{ margin: '0 0 10px 0', color: 'white' }}>Órdenes Activas</h3>
-                                        <p style={{ color: '#888', fontSize: '0.9rem', margin: 0 }}>Gestiona y actualiza los pedidos.</p>
-                                    </div>
-                                    <div onClick={() => manejarCambioSeccion('productos')} style={estiloTarjeta}>
-                                        <h2 style={{ fontSize: '3rem', margin: '0 0 15px 0' }}>🧁</h2>
-                                        <h3 style={{ margin: '0 0 10px 0', color: 'white' }}>Mi Armería</h3>
-                                        <p style={{ color: '#888', fontSize: '0.9rem', margin: 0 }}>Añade o edita tu stock de productos.</p>
-                                    </div>
-                                    <div onClick={() => manejarCambioSeccion('resenas_gestion')} style={estiloTarjeta}>
-                                        <h2 style={{ fontSize: '3rem', margin: '0 0 15px 0' }}>💬</h2>
-                                        <h3 style={{ margin: '0 0 10px 0', color: 'white' }}>Feedback</h3>
-                                        <p style={{ color: '#888', fontSize: '0.9rem', margin: 0 }}>Responde las reseñas de los guerreros.</p>
-                                    </div>
-                                </>
-                            )}
-                        </div>
                     </div>
                 )}
             </main>
         </div>
     )
 }
+
+const tarjetaLoginStyle = { background: '#111', padding: '40px 30px', borderRadius: '15px', textAlign: 'center', width: '320px', display: 'flex', flexDirection: 'column', alignItems: 'center' };
+const btnStyle = { padding: '15px 20px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontWeight: '900', width: '100%', fontSize: '1rem', transition: 'transform 0.2s' };
 
 export default App

@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0bd1e462-44e4-4aca-9a9b-ab0db1278c0e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/.env" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gamebakes-web/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/authConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/gamebakes-web/src/componentes/autenticacion/authConfig.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,7 +314,8 @@
       <workItem from="1782167548382" duration="4194000" />
       <workItem from="1788713824699" duration="4763000" />
       <workItem from="1791331959746" duration="2270000" />
-      <workItem from="1791417229917" duration="3399000" />
+      <workItem from="1791417229917" duration="3474000" />
+      <workItem from="1791506035124" duration="655000" />
     </task>
     <servers />
   </component>
