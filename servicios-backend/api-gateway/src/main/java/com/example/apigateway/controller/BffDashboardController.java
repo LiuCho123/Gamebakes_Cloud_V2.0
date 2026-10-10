@@ -4,8 +4,10 @@ import com.example.apigateway.client.PedidoClient;
 import com.example.apigateway.client.PerfilClient;
 import com.example.apigateway.client.ResenaClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -28,10 +30,12 @@ public class BffDashboardController {
     private ResenaClient resenaClient;
 
     @GetMapping("/cliente/{clienteId}")
-    public Mono<Map<String, Object>> obtenerDashboardCliente(@PathVariable Long clienteId) {
+    public Mono<Map<String, Object>> obtenerDashboardCliente(
+            @PathVariable Long clienteId,
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authHeader) {
         return Mono.zip(
                 perfilClient.obtenerPerfil(clienteId),
-                pedidoClient.obtenerMisPedidos(clienteId).collectList(),
+                pedidoClient.obtenerMisPedidos(String.valueOf(clienteId), authHeader).collectList(),
                 resenaClient.obtenerResenasCliente().collectList()
         )
         .map(tuple -> {
@@ -48,12 +52,14 @@ public class BffDashboardController {
             return Mono.just(errorResponse);
         });
     }
-    
+
     @GetMapping("/vendedor/{vendedorId}")
-    public Mono<Map<String, Object>> obtenerDashboardVendedor(@PathVariable Long vendedorId) {
+    public Mono<Map<String, Object>> obtenerDashboardVendedor(
+            @PathVariable Long vendedorId,
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authHeader) {
         return Mono.zip(
                 perfilClient.obtenerPerfil(vendedorId),
-                pedidoClient.obtenerPedidosVendedor(vendedorId).collectList(),
+                pedidoClient.obtenerPedidosVendedor(String.valueOf(vendedorId), authHeader).collectList(),
                 resenaClient.obtenerResenasVendedor(vendedorId).collectList()
         )
         .map(tuple -> {
@@ -70,17 +76,17 @@ public class BffDashboardController {
             return Mono.just(errorResponse);
         });
     }
-    
+
     private Map<String, Object> calcularEstadisticas(List<Map<String, Object>> pedidos, List<Map<String, Object>> resenas) {
         Map<String, Object> estadisticas = new HashMap<>();
-        
+
         int totalPedidos = pedidos != null ? pedidos.size() : 0;
         int totalResenas = resenas != null ? resenas.size() : 0;
-        
+
         int pedidosEntregados = 0;
         int pedidosEnCamino = 0;
         int pedidosPreparacion = 0;
-        
+
         if (pedidos != null) {
             for (Map<String, Object> pedido : pedidos) {
                 String estado = (String) pedido.get("estado");
@@ -89,7 +95,7 @@ public class BffDashboardController {
                 else if ("PREPARACION".equals(estado)) pedidosPreparacion++;
             }
         }
-        
+
         double promedioEstrellas = 0.0;
         if (resenas != null && !resenas.isEmpty()) {
             double sumaEstrellas = 0.0;
@@ -101,14 +107,14 @@ public class BffDashboardController {
             }
             promedioEstrellas = sumaEstrellas / resenas.size();
         }
-        
+
         estadisticas.put("totalPedidos", totalPedidos);
         estadisticas.put("totalResenas", totalResenas);
         estadisticas.put("pedidosEntregados", pedidosEntregados);
         estadisticas.put("pedidosEnCamino", pedidosEnCamino);
         estadisticas.put("pedidosPreparacion", pedidosPreparacion);
         estadisticas.put("promedioEstrellas", promedioEstrellas);
-        
+
         return estadisticas;
     }
 }
