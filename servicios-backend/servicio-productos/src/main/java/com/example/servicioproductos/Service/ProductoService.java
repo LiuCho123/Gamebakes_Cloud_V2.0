@@ -3,7 +3,7 @@ package com.example.servicioproductos.Service;
 import com.example.servicioproductos.Model.Producto;
 import com.example.servicioproductos.Repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -17,14 +17,14 @@ public class ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
+    // CAMBIO: Inyectamos RabbitTemplate en lugar de KafkaTemplate
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private RabbitTemplate rabbitTemplate;
 
     public List<Producto> listar(){
         return productoRepository.findByActivoTrue();
     }
 
-    // ¡AQUÍ ESTÁ EL CAMBIO MAGISTRAL!
     public List<Producto> listarPorVendedor(String vendedorId) {
         return productoRepository.findByVendedorId(vendedorId);
     }
@@ -83,10 +83,10 @@ public class ProductoService {
 
             String json = mapper.writeValueAsString(evento);
 
-            kafkaTemplate.send("topic-stock-productos", json);
-            System.out.println("Evento de stock enviado a kafka: "+ json);
+            rabbitTemplate.convertAndSend("cola.stock.productos", json);
+            System.out.println("Evento de stock enviado a RabbitMQ: "+ json);
         } catch (Exception e){
-            System.out.println("Error al enviar evento a kafka");
+            System.out.println("Error al enviar evento a RabbitMQ: " + e.getMessage());
         }
     }
 }

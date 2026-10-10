@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0bd1e462-44e4-4aca-9a9b-ab0db1278c0e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/api-gateway/src/main/java/com/example/apigateway/client/PagoClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/api-gateway/src/main/java/com/example/apigateway/client/PagoClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servicios-backend/api-gateway/src/main/java/com/example/apigateway/controller/BffCarritoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/api-gateway/src/main/java/com/example/apigateway/controller/BffCarritoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-productos/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-productos/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servicios-backend/servicio-productos/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/servicios-backend/servicio-productos/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,7 +316,7 @@
       <workItem from="1791331959746" duration="2270000" />
       <workItem from="1791417229917" duration="3474000" />
       <workItem from="1791506035124" duration="655000" />
-      <workItem from="1791656935561" duration="817000" />
+      <workItem from="1791656935561" duration="2280000" />
     </task>
     <servers />
   </component>
