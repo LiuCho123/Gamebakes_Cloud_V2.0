@@ -28,12 +28,8 @@ public class ProductoController {
 
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody Producto producto,
-                                   @RequestHeader(value = "X-User-Id", required = false) String vendedorIdStr,
-                                   @RequestHeader(value = "X-User-Role", required = false) String rol) {
+                                   @RequestHeader(value = "X-User-Id", required = false) String vendedorIdStr) {
 
-        if (rol == null || !"VENDEDOR".equals(rol)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso denegado: Solo los vendedores pueden crear productos.");
-        }
         if (vendedorIdStr == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no autenticado.");
         }
@@ -53,10 +49,10 @@ public class ProductoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id,
-                                      @RequestHeader(value = "X-User-Role", required = false) String rol){
+                                      @RequestHeader(value = "X-User-Id", required = false) String vendedorIdStr){
 
-        if (rol == null || !"VENDEDOR".equals(rol)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso denegado: Solo los vendedores pueden eliminar.");
+        if (vendedorIdStr == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acceso denegado: Usuario no autenticado.");
         }
 
         try {
@@ -70,9 +66,10 @@ public class ProductoController {
     @PatchMapping("/{id}/estado")
     public ResponseEntity<?> cambiarEstado(@PathVariable Long id,
                                            @RequestParam boolean activo,
-                                           @RequestHeader(value = "X-User-Role", required = false) String rol){
-        if (rol == null || !"VENDEDOR".equals(rol)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso denegado.");
+                                           @RequestHeader(value = "X-User-Id", required = false) String vendedorIdStr){
+
+        if (vendedorIdStr == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acceso denegado.");
         }
         try {
             return ResponseEntity.ok(productoService.cambiarEstadoActivo(id, activo));
@@ -84,12 +81,8 @@ public class ProductoController {
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id,
                                         @RequestBody Producto producto,
-                                        @RequestHeader(value = "X-User-Id", required = false) String vendedorIdStr,
-                                        @RequestHeader(value = "X-User-Role", required = false) String rol) {
+                                        @RequestHeader(value = "X-User-Id", required = false) String vendedorIdStr) {
 
-        if (rol == null || !"VENDEDOR".equals(rol)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso denegado.");
-        }
         if (vendedorIdStr == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no autenticado.");
         }
