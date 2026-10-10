@@ -14,10 +14,13 @@ import java.util.Map;
 @Service
 public class ProductoService {
 
+    // Topología RabbitMQ (declarada por servicio-pagos en RabbitMQConfig)
+    private static final String EXCHANGE = "gamebakes.exchange";
+    private static final String RK_STOCK_ACTUALIZADO = "stock.actualizado";
+
     @Autowired
     private ProductoRepository productoRepository;
 
-    // CAMBIO: Inyectamos RabbitTemplate en lugar de KafkaTemplate
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
@@ -83,8 +86,8 @@ public class ProductoService {
 
             String json = mapper.writeValueAsString(evento);
 
-            rabbitTemplate.convertAndSend("cola.stock.productos", json);
-            System.out.println("Evento de stock enviado a RabbitMQ: "+ json);
+            rabbitTemplate.convertAndSend(EXCHANGE, RK_STOCK_ACTUALIZADO, json);
+            System.out.println("Evento de stock enviado a RabbitMQ (" + RK_STOCK_ACTUALIZADO + "): " + json);
         } catch (Exception e){
             System.out.println("Error al enviar evento a RabbitMQ: " + e.getMessage());
         }
