@@ -16,7 +16,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/bff/productos")
-@CrossOrigin(origins = {"http://localhost:5173", "http://18.211.231.0", "http://18.211.231.0:5173"}, allowCredentials = "true")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "http://44.218.147.127",
+        "http://44.218.147.127:5173",
+        "https://gamebakescloud.vercel.app"}, allowCredentials = "true")
 public class BffProductoController {
 
     @Autowired
@@ -28,7 +32,8 @@ public class BffProductoController {
     @GetMapping("/{id}/detalle-completo")
     public Mono<Map<String, Object>> obtenerProductoDetalleCompleto(
             @PathVariable Long id,
-            @RequestHeader(value = "X-User-Id", required = false) Long userId,
+            // CAMBIO: userId ahora es String para soportar Cognito
+            @RequestHeader(value = "X-User-Id", required = false) String userId,
             @RequestHeader(value = "Authorization", required = false) String authHeader) {
 
         return productoClient.obtenerProducto(id)
@@ -37,7 +42,7 @@ public class BffProductoController {
                     response.put("producto", producto);
 
                     if (userId != null && authHeader != null) {
-                        return pedidoClient.obtenerMisPedidos(userId)
+                        return pedidoClient.obtenerMisPedidos(userId, authHeader)
                                 .collectList()
                                 .map(pedidos -> {
                                     boolean haComprado = false;

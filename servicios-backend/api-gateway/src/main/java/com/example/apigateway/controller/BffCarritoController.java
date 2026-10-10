@@ -3,13 +3,18 @@ package com.example.apigateway.controller;
 import com.example.apigateway.client.PagoClient;
 import com.example.apigateway.client.ProductoClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin(origins = {"http://localhost:5173", "http://18.211.231.0", "http://18.211.231.0:5173"}, allowCredentials = "true")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "http://44.218.147.127",
+        "http://44.218.147.127:5173",
+        "https://gamebakescloud.vercel.app"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/bff/carrito")
 public class BffCarritoController {
@@ -21,12 +26,15 @@ public class BffCarritoController {
     private ProductoClient productoClient;
 
     @GetMapping("/completo/{clienteId}")
-    public Mono<Map<String, Object>> obtenerCarritoCompleto(@PathVariable Long clienteId) {
-        return pagoClient.obtenerCarrito(clienteId)
+    public Mono<Map<String, Object>> obtenerCarritoCompleto(
+            @PathVariable String clienteId,
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String authHeader) {
+
+        return pagoClient.obtenerCarrito(clienteId, authHeader)
                 .flatMap(item -> {
-                    Long productoId = item.get("productoId") instanceof Number ? 
+                    Long productoId = item.get("productoId") instanceof Number ?
                             ((Number) item.get("productoId")).longValue() : null;
-                    
+
                     if (productoId != null) {
                         return productoClient.obtenerProducto(productoId)
                                 .map(producto -> {
@@ -57,7 +65,7 @@ public class BffCarritoController {
                     return Mono.just(errorResponse);
                 });
     }
-    
+
     private double calcularTotal(java.util.List<Map<String, Object>> items) {
         double total = 0.0;
         for (Map<String, Object> item : items) {
