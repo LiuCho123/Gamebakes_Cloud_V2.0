@@ -46,12 +46,14 @@ function App() {
                 sessionStorage.setItem('token', idToken);
 
                 let nombreGamer = 'Gamer';
+                let idCliente = null;
                 try {
                     const payload = JSON.parse(atob(idToken.split('.')[1]));
                     nombreGamer = payload.name || payload['cognito:username'] || 'Gamer';
+                    idCliente = payload.sub || null;
                 } catch (e) {}
 
-                setUsuario({ loggedIn: true, rol: 'cliente', id: null, nombre: nombreGamer });
+                setUsuario({ loggedIn: true, rol: 'cliente', id: idCliente, nombre: nombreGamer });
 
                 window.history.replaceState(null, '', window.location.pathname);
             }
