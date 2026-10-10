@@ -22,7 +22,11 @@ public class ProductoController {
     }
 
     @GetMapping("/vendedor/{vendedorId}")
-    public ResponseEntity<List<Producto>> listarPorVendedor(@PathVariable String vendedorId){
+    public ResponseEntity<List<Producto>> listarPorVendedor(
+            @PathVariable String vendedorId,
+            @RequestHeader(value = "X-User-Role", required = false) String rol){
+
+        System.out.println("LISTANDO PRODUCTOS. Rol recibido: " + rol + " | VendedorId: " + vendedorId);
         return ResponseEntity.ok(productoService.listarPorVendedor(vendedorId));
     }
 
@@ -31,9 +35,8 @@ public class ProductoController {
                                    @RequestHeader(value = "X-User-Id", required = false) String vendedorIdStr,
                                    @RequestHeader(value = "X-User-Role", required = false) String rol) {
 
-        if (rol == null || !"VENDEDOR".equals(rol)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso denegado: Solo los vendedores pueden crear productos.");
-        }
+        System.out.println("CREANDO PRODUCTO. Rol recibido: " + rol + " | VendedorId: " + vendedorIdStr);
+
         if (vendedorIdStr == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no autenticado.");
         }
