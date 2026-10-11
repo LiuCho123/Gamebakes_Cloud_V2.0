@@ -15,7 +15,7 @@ public class CarritoController {
     private CarritoService carritoService;
 
     @GetMapping("/{clienteId}")
-    public ResponseEntity<List<CarritoItem>> obtener(@PathVariable Long clienteId) {
+    public ResponseEntity<List<CarritoItem>> obtener(@PathVariable String clienteId) {
         return ResponseEntity.ok(carritoService.listarPorCliente(clienteId));
     }
 
