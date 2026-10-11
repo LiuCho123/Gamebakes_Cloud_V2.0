@@ -10,7 +10,11 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long clienteId; //ID del usuario que compra
+
+    // ID del usuario que compra: UUID de Cognito (sub), por eso es texto y no numero
+    @Column(length = 64)
+    private String clienteId;
+
     private String clienteNombre; 
     private Long productoId; //ID del producto
     private String productoNombre;

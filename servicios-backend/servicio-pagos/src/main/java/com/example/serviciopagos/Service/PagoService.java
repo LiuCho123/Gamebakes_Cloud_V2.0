@@ -89,7 +89,7 @@ public class PagoService {
         }
     }
 
-    public Pago iniciarPagoCarrito(Long clienteId) {
+    public Pago iniciarPagoCarrito(String clienteId) {
         List<CarritoItem> itemsCarrito = carritoService.listarPorCliente(clienteId);
         if (itemsCarrito.isEmpty()) throw new RuntimeException("El carrito está vacío");
 
@@ -147,7 +147,7 @@ public class PagoService {
     }
 
     @Transactional
-    public Pago confirmarPago(Long idPago, Long usuarioAutenticadoId, String token, String nombreUsuario) {
+    public Pago confirmarPago(Long idPago, String usuarioAutenticadoId, String token, String nombreUsuario) {
         Pago pago = pagoRepository.findById(idPago).orElseThrow();
 
         if (!pago.getClienteId().equals(usuarioAutenticadoId)) {
@@ -189,7 +189,7 @@ public class PagoService {
         return pago;
     }
 
-    public List<Pago> obtenerHistorialPorCliente(Long clienteId) {
+    public List<Pago> obtenerHistorialPorCliente(String clienteId) {
         return pagoRepository.findByClienteId(clienteId);
     }
 }

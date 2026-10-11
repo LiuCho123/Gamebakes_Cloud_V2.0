@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface CarritoItemRepository extends JpaRepository<CarritoItem, Long> {
-    List<CarritoItem> findByClienteId(Long clienteId);
+List<CarritoItem> findByClienteId(String clienteId);
 
     @Transactional
-    void deleteByClienteId(Long clienteId);
+    void deleteByClienteId(String clienteId);
 }

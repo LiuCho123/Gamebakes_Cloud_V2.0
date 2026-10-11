@@ -15,7 +15,11 @@ public class Pago {
     private Long idPago;
 
     private Long pedidoId;
-    private Long clienteId;
+
+    // Id del usuario: UUID de Cognito (sub) u oid de Entra. Por eso es texto, no numero.
+    @Column(length = 64)
+    private String clienteId;
+
     private Double monto;
     private String metodoPago;
     private String estado;

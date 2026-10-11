@@ -40,11 +40,12 @@ public class PedidoListener {
             throw new AmqpRejectAndDontRequeueException("JSON inválido en pago.exitoso", e);
         }
 
-        if (!jsonNode.has("clienteId")) {
+        if (!jsonNode.hasNonNull("clienteId")) {
             throw new AmqpRejectAndDontRequeueException("pago.exitoso sin clienteId: " + message);
         }
 
-        Long clienteId = jsonNode.get("clienteId").asLong();
+        // El clienteId es el UUID de Cognito (sub), por eso se lee como texto
+        String clienteId = jsonNode.get("clienteId").asText();
         String clienteNombre = jsonNode.has("clienteNombre") ? jsonNode.get("clienteNombre").asText() : "Cliente";
 
         // Carrito: llega un arreglo "items"
@@ -80,7 +81,7 @@ public class PedidoListener {
     }
 
     @SuppressWarnings("unchecked")
-    private void crearPedido(Long clienteId, String clienteNombre, Long productoId, Integer cantidad) {
+    private void crearPedido(String clienteId, String clienteNombre, Long productoId, Integer cantidad) {
         String productoUrl = "http://servicio-productos:8085/api/productos/" + productoId;
         Map<String, Object> productoData = restTemplate.getForObject(productoUrl, Map.class);
 

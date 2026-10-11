@@ -18,7 +18,7 @@ public class PedidoService {
     private RabbitTemplate rabbitTemplate;
 
     //VISTA CLIENTE: Obtener sus pedidos personales
-    public List<Pedido> obtenerPedidosPorCliente(Long clienteId) {
+    public List<Pedido> obtenerPedidosPorCliente(String clienteId) {
         return pedidoRepository.findByClienteId(clienteId);
     }
 
@@ -50,7 +50,7 @@ public class PedidoService {
         return actualizado;
     }
 
-    public boolean validarCompra(Long clienteId, Long productoId) {
+    public boolean validarCompra(String clienteId, Long productoId) {
         List<Pedido> pedidos = pedidoRepository.findByClienteIdAndProductoId(clienteId, productoId);
         System.out.println("=== VALIDAR COMPRA ===");
         System.out.println("Cliente: " + clienteId + ", Producto: " + productoId);
@@ -58,7 +58,7 @@ public class PedidoService {
         return !pedidos.isEmpty();
     }
 
-    public boolean validarEntregado(Long clienteId, Long productoId) {
+    public boolean validarEntregado(String clienteId, Long productoId) {
         List<Pedido> pedidos = pedidoRepository.findByClienteIdAndProductoId(clienteId, productoId);
         System.out.println("=== VALIDAR ENTREGADO ===");
         System.out.println("Cliente: " + clienteId + ", Producto: " + productoId);

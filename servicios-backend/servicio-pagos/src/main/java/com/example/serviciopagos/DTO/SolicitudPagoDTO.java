@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class SolicitudPagoDTO {
     private Long pedidoId;
-    private Long clienteId;
+    private String clienteId;
     private Double monto;
     private String metodo;
     private Long productoId;

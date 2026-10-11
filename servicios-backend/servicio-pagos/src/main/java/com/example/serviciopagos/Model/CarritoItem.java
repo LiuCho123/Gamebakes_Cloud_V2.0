@@ -12,7 +12,10 @@ public class CarritoItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long clienteId;
+    // Id del usuario: UUID de Cognito (sub) u oid de Entra. Por eso es texto, no numero.
+    @Column(length = 64)
+    private String clienteId;
+
     private Long productoId;
     private Integer cantidad;
     private Double precioUnitario;

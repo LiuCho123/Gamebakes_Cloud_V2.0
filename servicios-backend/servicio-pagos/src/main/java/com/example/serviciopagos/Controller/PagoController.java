@@ -18,9 +18,8 @@ public class PagoController {
 
     @PostMapping("/iniciar")
     public ResponseEntity<?> iniciar(@RequestBody SolicitudPagoDTO solicitud,
-                                     @RequestHeader("X-User-Id") String usuarioIdStr){
+                                     @RequestHeader("X-User-Id") String usuarioId){
         try{
-            Long usuarioId = Long.parseLong(usuarioIdStr);
             solicitud.setClienteId(usuarioId);
             return ResponseEntity.ok(pagoService.iniciarPagoMP(solicitud));
         } catch(RuntimeException e){
@@ -30,23 +29,21 @@ public class PagoController {
 
     @PostMapping("/confirmar/{idPago}")
     public ResponseEntity<Pago> confirmar(@PathVariable Long idPago,
-                                          @RequestHeader("X-User-Id") String usuarioIdStr,
+                                          @RequestHeader("X-User-Id") String usuarioId,
                                           @RequestHeader("Authorization") String token,
                                           @RequestHeader(value = "X-User-Name", required = false) String nombreUsuarioStr) {
-        Long usuarioId = Long.parseLong(usuarioIdStr);
         String nombreFinal = (nombreUsuarioStr != null) ? nombreUsuarioStr : "Cliente";
 
         return ResponseEntity.ok(pagoService.confirmarPago(idPago, usuarioId, token, nombreFinal));
     }
 
     @GetMapping("/historial")
-    public ResponseEntity<List<Pago>> historialPropio(@RequestHeader("X-User-Id") String usuarioIdStr) {
-        Long usuarioId = Long.parseLong(usuarioIdStr);
+    public ResponseEntity<List<Pago>> historialPropio(@RequestHeader("X-User-Id") String usuarioId) {
         return ResponseEntity.ok(pagoService.obtenerHistorialPorCliente(usuarioId));
     }
 
     @PostMapping("/iniciar-desde-carrito/{clienteId}")
-    public ResponseEntity<?> iniciarDesdeCarrito(@PathVariable Long clienteId) {
+    public ResponseEntity<?> iniciarDesdeCarrito(@PathVariable String clienteId) {
         try {
             return ResponseEntity.ok(pagoService.iniciarPagoCarrito(clienteId));
         } catch(RuntimeException e){

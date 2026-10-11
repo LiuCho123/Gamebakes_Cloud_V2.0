@@ -18,7 +18,7 @@ public class CarritoService {
     @Autowired
     private ProductoStockCacheRepository stockCacheRepository;
 
-    public List<CarritoItem> listarPorCliente(Long clienteId) {
+    public List<CarritoItem> listarPorCliente(String clienteId) {
         return carritoItemRepository.findByClienteId(clienteId);
     }
 
@@ -40,7 +40,7 @@ public class CarritoService {
     }
 
     @Transactional
-    public void limpiarCarrito(Long clienteId) {
+    public void limpiarCarrito(String clienteId) {
         carritoItemRepository.deleteByClienteId(clienteId);
     }
 }
