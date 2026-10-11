@@ -18,7 +18,7 @@ public interface PedidoClient {
     @Cacheable(value = "validacionesCompra", key = "#clienteId + '-' + #productoId")
     @CircuitBreaker(name = "pedidoCB", fallbackMethod = "fallbackValidarCompra")
     boolean validarCompra(
-            @RequestParam("clienteId") Long clienteId,
+            @RequestParam("clienteId") String clienteId,
             @RequestParam("productoId") Long productoId
     );
 
@@ -27,16 +27,16 @@ public interface PedidoClient {
     @Cacheable(value = "validacionesEntregado", key = "#clienteId + '-' + #productoId")
     @CircuitBreaker(name = "pedidoCB", fallbackMethod = "fallbackValidarEntregado")
     boolean validarEntregado(
-            @RequestParam("clienteId") Long clienteId,
+            @RequestParam("clienteId") String clienteId,
             @RequestParam("productoId") Long productoId
     );
 
-    default boolean fallbackValidarCompra(Long clienteId, Long productoId, Throwable t) {
+    default boolean fallbackValidarCompra(String clienteId, Long productoId, Throwable t) {
         System.out.println("Circuit Breaker: Error validando compra. Cliente: " + clienteId + ", Producto: " + productoId + ". Motivo: " + t.getMessage());
         return false;
     }
 
-    default boolean fallbackValidarEntregado(Long clienteId, Long productoId, Throwable t) {
+    default boolean fallbackValidarEntregado(String clienteId, Long productoId, Throwable t) {
         System.out.println("Circuit Breaker: Error validando estado entregado. Cliente: " + clienteId + ", Producto: " + productoId + ". Motivo: " + t.getMessage());
         return false;
     }

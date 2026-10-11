@@ -37,7 +37,7 @@ public class ResenaService {
 
     //CLIENTE: Obtener sus reseñas con Circuit Breaker
     @CircuitBreaker(name = "resenaCB", fallbackMethod = "fallbackResenasCliente")
-    public List<Resena> obtenerPorCliente(Long clienteId) {
+    public List<Resena> obtenerPorCliente(String clienteId) {
         return resenaRepository.findByClienteId(clienteId);
     }
 
@@ -97,7 +97,7 @@ public class ResenaService {
         return new ArrayList<>();
     }
 
-    public List<Resena> fallbackResenasCliente(Long id, Throwable t) {
+    public List<Resena> fallbackResenasCliente(String id, Throwable t) {
         System.out.println("Circuit Breaker: Error obteniendo reseñas del cliente. Motivo: " + t.getMessage());
         return new ArrayList<>();
     }
