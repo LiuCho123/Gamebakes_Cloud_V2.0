@@ -5,7 +5,6 @@ import com.gamebakes.servicio_resenas.model.Resena;
 import com.gamebakes.servicio_resenas.repository.ResenaRepository;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.ArrayList;
@@ -19,9 +18,6 @@ public class ResenaService {
 
     @Autowired
     private PedidoClient pedidoClient;
-
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
 
     //CLIENTE: Obtener reseñas por producto con Circuit Breaker
     @CircuitBreaker(name = "resenaCB", fallbackMethod = "fallbackResenas")
@@ -41,7 +37,7 @@ public class ResenaService {
         return resenaRepository.findByClienteId(clienteId);
     }
 
-    //Lógica para guardar reseña con validación de compra, estado entregado y Kafka
+    //Lógica para guardar reseña con validación de compra y estado entregado
     public Resena guardarResena(Resena resena) {
         System.out.println("=== CREANDO RESEÑA ===");
         System.out.println("Cliente ID: " + resena.getClienteId());
@@ -66,14 +62,6 @@ public class ResenaService {
 
         Resena nueva = resenaRepository.save(resena);
         System.out.println("Reseña guardada con ID: " + nueva.getId());
-
-        // Enviar notificación asíncrona a Kafka (temporalmente deshabilitado)
-        try {
-            kafkaTemplate.send("notificaciones-resenas", "Nueva reseña para el producto: " + resena.getProductoId());
-        } catch (Exception e) {
-            System.out.println("Error enviando a Kafka: " + e.getMessage());
-            // No fallar el proceso si Kafka no está disponible
-        }
 
         return nueva;
     }
