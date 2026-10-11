@@ -16,7 +16,7 @@ public class PedidoController {
     @GetMapping("/mis-pedidos")
     public List<Pedido> listarMisPedidos(@RequestHeader(value = "X-User-Id", required = false) String userId) {
         if (userId == null) return List.of();
-        return pedidoService.obtenerPedidosPorCliente(Long.parseLong(userId));
+        return pedidoService.obtenerPedidosPorCliente(userId);
     }
 
     @GetMapping("/vendedor/{vendedorId}")
@@ -30,7 +30,7 @@ public class PedidoController {
             @RequestHeader(value = "X-User-Id", required = false) String userId) {
         
         if (userId != null) {
-            pedido.setClienteId(Long.parseLong(userId));
+            pedido.setClienteId(userId);
         }
         return pedidoService.crearPedido(pedido);
     }
@@ -42,14 +42,14 @@ public class PedidoController {
 
     @GetMapping("/validar-compra")
     public boolean validarCompra(
-            @RequestParam("clienteId") Long clienteId,
+            @RequestParam("clienteId") String clienteId,
             @RequestParam("productoId") Long productoId) {
         return pedidoService.validarCompra(clienteId, productoId);
     }
 
     @GetMapping("/validar-entregado")
     public boolean validarEntregado(
-            @RequestParam("clienteId") Long clienteId,
+            @RequestParam("clienteId") String clienteId,
             @RequestParam("productoId") Long productoId) {
         return pedidoService.validarEntregado(clienteId, productoId);
     }
