@@ -20,15 +20,15 @@ public class ResenaController {
         return ResponseEntity.ok(resenas);
     }
 
-    //Crear reseña (Protegido por Gateway)
+    //Crear reseña
     @PostMapping
     public ResponseEntity<Resena> crear(
             @RequestBody Resena resena,
             @RequestHeader(value = "X-User-Id", required = false) String userId) {
-        
-        //Si el Gateway envió el ID del usuario, lo asignamos al clienteId del modelo
-        if (userId != null) {
-            resena.setClienteId(Long.parseLong(userId));
+
+        //Si llegó el ID del usuario en el header, se asigna como clienteId
+        if (userId != null && !userId.isBlank()) {
+            resena.setClienteId(userId);
         }
 
         Resena nuevaResena = resenaService.guardarResena(resena);
@@ -42,15 +42,15 @@ public class ResenaController {
         return ResponseEntity.ok(resenas);
     }
 
-    //Listar por cliente (Protegido por Gateway)
+    //Listar por cliente
     @GetMapping("/cliente")
     public ResponseEntity<List<Resena>> listarPorCliente(@RequestHeader(value = "X-User-Id", required = false) String userId) {
-        if (userId == null) {
+        if (userId == null || userId.isBlank()) {
             System.out.println("Error: X-User-Id header is null");
             return ResponseEntity.badRequest().build();
         }
         System.out.println("Obteniendo reseñas para cliente ID: " + userId);
-        List<Resena> resenas = resenaService.obtenerPorCliente(Long.parseLong(userId));
+        List<Resena> resenas = resenaService.obtenerPorCliente(userId);
         System.out.println("Reseñas encontradas: " + resenas.size());
         return ResponseEntity.ok(resenas);
     }

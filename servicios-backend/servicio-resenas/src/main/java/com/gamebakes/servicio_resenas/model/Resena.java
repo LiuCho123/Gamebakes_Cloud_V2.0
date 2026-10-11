@@ -14,8 +14,9 @@ public class Resena {
     private Long productoId;
     private String productoNombre;
 
-    //Identificación del Cliente
-    private Long clienteId;
+    //Identificación del Cliente (sub de Cognito, es un UUID)
+    @Column(length = 64)
+    private String clienteId;
     private String clienteNombre;
 
     @Column(length = 1000)
