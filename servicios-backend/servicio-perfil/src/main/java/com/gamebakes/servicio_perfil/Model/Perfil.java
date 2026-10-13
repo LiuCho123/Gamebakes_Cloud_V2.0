@@ -23,5 +23,5 @@ public class Perfil {
     
     private String telefono;
     
-    private String direccion;
+    private String direccion; 
 }
