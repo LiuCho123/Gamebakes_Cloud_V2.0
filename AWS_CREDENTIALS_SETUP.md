@@ -1,61 +1,86 @@
-# Configuración de Credenciales AWS para SQS
+# Configuración de AWS SQS para GameBakes
 
-## Variables de Entorno Requeridas
+## Configuración con Rol IAM de EC2
 
-Los servicios `servicio-pagos` y `servicio-productos` requieren las siguientes variables de entorno para conectarse a AWS SQS usando Spring Cloud AWS:
+Los servicios `servicio-pagos` y `servicio-productos` usan automáticamente el rol IAM asignado a la instancia EC2. **No se requieren credenciales explícitas (access key, secret key).**
 
-```bash
-AWS_ACCESS_KEY_ID=tu_access_key_aqui
-AWS_SECRET_ACCESS_KEY=tu_secret_key_aqui
-AWS_SESSION_TOKEN=tu_session_token_aqui
-```
+El cliente SQS del SDK (SqsAsyncClient) toma las credenciales automáticamente del rol de la EC2.
 
-## Cómo Obtener Nuevas Credenciales
+## Variables de Entorno Opcionales
 
-Las credenciales de AWS Academy expiran después de un tiempo (generalmente 1-3 horas). Para obtener nuevas credenciales:
-
-1. Entra al portal de AWS Academy
-2. Busca el laboratorio activo
-3. Busca la sección "AWS Account Details" o "Credentials"
-4. Copia las nuevas credenciales (Access Key ID, Secret Access Key, Session Token)
-
-## Cómo Configurar las Variables de Entorno
-
-### En la EC2 (docker-compose)
-
-Edita el archivo `docker-compose.yml` y agrega las variables de entorno en la sección de cada servicio:
+Puedes configurar las URLs de las colas SQS como variables de entorno en docker-compose.yml:
 
 ```yaml
 servicio-pagos:
   environment:
-    - AWS_ACCESS_KEY_ID=tu_access_key
-    - AWS_SECRET_ACCESS_KEY=tu_secret_key
-    - AWS_SESSION_TOKEN=tu_session_token
+    - SQS_QUEUE_PAGO_EXITOSO=https://sqs.us-east-1.amazonaws.com/675168827747/gamebakes-pago-exitoso
+    - SQS_QUEUE_DLQ=https://sqs.us-east-1.amazonaws.com/675168827747/gamebakes-pago-DLQ
 
 servicio-productos:
   environment:
-    - AWS_ACCESS_KEY_ID=tu_access_key
-    - AWS_SECRET_ACCESS_KEY=tu_secret_key
-    - AWS_SESSION_TOKEN=tu_session_token
+    - SQS_QUEUE_PAGO_EXITOSO=https://sqs.us-east-1.amazonaws.com/675168827747/gamebakes-pago-exitoso
+    - SQS_QUEUE_DLQ=https://sqs.us-east-1.amazonaws.com/675168827747/gamebakes-pago-DLQ
 ```
 
-### O exportar en la terminal de la EC2
+Si no se definen, se usan los valores por defecto en application.properties.
+
+## Configuración del Rol IAM
+
+La instancia EC2 debe tener un rol IAM con los siguientes permisos SQS:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sqs:SendMessage",
+                "sqs:ReceiveMessage",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes"
+            ],
+            "Resource": [
+                "arn:aws:sqs:us-east-1:675168827747:gamebakes-pago-exitoso",
+                "arn:aws:sqs:us-east-1:675168827747:gamebakes-pago-DLQ"
+            ]
+        }
+    ]
+}
+```
+
+## Verificación
+
+Para verificar que el rol tiene permisos SQS, ejecuta en la EC2:
 
 ```bash
-export AWS_ACCESS_KEY_ID=tu_access_key
-export AWS_SECRET_ACCESS_KEY=tu_secret_key
-export AWS_SESSION_TOKEN=tu_session_token
+aws sqs get-queue-attributes \
+  --queue-url https://sqs.us-east-1.amazonaws.com/675168827747/gamebakes-pago-exitoso \
+  --attribute-names QueueArn
 ```
+
+Si falla con "AccessDenied", el rol no tiene permisos SQS.
 
 ## Tecnologías Utilizadas
 
 - **Spring Cloud AWS**: Integración de Spring Boot con servicios de AWS
 - **@SqsListener**: Anotación para consumir mensajes de SQS automáticamente
 - **SqsTemplate**: Template simplificado para enviar mensajes a SQS
+- **Rol IAM de EC2**: Credenciales automáticas sin configuración explícita
 
-## Importante
+## Solución de Problemas
 
-- **Nunca subas las credenciales al repositorio de GitHub**
-- Las credenciales son temporales y deben actualizarse cuando expiren
-- Solo el equipo de desarrollo debe tener acceso a estas credenciales
-- Spring Cloud AWS maneja automáticamente los reintentos y envío a DLQ
+### Error: Unable to load credentials
+
+Si el servicio falla con "Unable to load credentials", significa que el contenedor no está alcanzando el rol de la EC2. Verifica:
+
+1. Que el rol IAM esté asignado a la instancia EC2 correcta (Backend-Spring-Rabbit)
+2. Que el rol tenga los permisos SQS necesarios
+3. Que la instancia EC2 tenga permisos para asumir el rol
+
+### Error: AccessDenied
+
+Si obtienes errores de acceso, verifica que:
+- El rol IAM tenga permisos para las colas SQS específicas
+- El ARN de las colas coincida con la política del rol
+- La región esté configurada correctamente (us-east-1)
