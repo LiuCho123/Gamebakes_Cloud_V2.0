@@ -30,7 +30,7 @@ public class PagoExitosoSqsListener {
         } catch (Exception e) {
             log.error("Error procesando pago: {}", e.getMessage());
             // Spring Cloud AWS maneja automáticamente los reintentos y DLQ
-            throw e; // Re-lanzar para que Spring Cloud AWS maneje el reenvío a DLQ
+            throw new RuntimeException(e); // Re-lanzar para que Spring Cloud AWS maneje el reenvío a DLQ
         }
     }
 
